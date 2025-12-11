@@ -19,14 +19,10 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AppAuthProvider()),
-        Provider<HabitsRepository>(
-          create: (_) => HabitsRepositoryImpl(),
-        ),
+        Provider<HabitsRepository>(create: (_) => HabitsRepositoryImpl()),
         Provider<HabitsService>(
-          create: (context) => HabitsService(
-            repository: context.read<HabitsRepository>(),
-          ),
-        ),
+            create: (context) =>
+                HabitsService(repository: context.read<HabitsRepository>())),
       ],
       child: const MyApp(),
     ),
