@@ -64,7 +64,6 @@ class HomeScreen extends StatelessWidget {
     {'title': 'Homework 10 — Async', 'route': hw10},
     {'title': 'Homework 11 — Posts & Comments', 'route': hw11},
     {'title': 'Homework 12 — Habits', 'route': hw12},
-    // ...
   ];
 
   @override
