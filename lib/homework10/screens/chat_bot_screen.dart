@@ -1,32 +1,14 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const ChatBotApp());
-}
-
-class ChatBotApp extends StatelessWidget {
-  const ChatBotApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Chat-bot',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const ChatScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
+class ChatBotScreen extends StatefulWidget {
+  const ChatBotScreen({super.key});
 
   @override
   State<StatefulWidget> createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatScreenState extends State<ChatBotScreen> {
   final TextEditingController _controller = TextEditingController();
   final List<_ChatMessage> _messages = [];
 
@@ -70,9 +52,13 @@ class _ChatScreenState extends State<ChatScreen> {
         _messages.add(_ChatMessage(text: response, isUser: false));
       });
     } catch (e) {
-      final String errorMsg = e.toString().replaceFirst('Exception: ', '',);
+      final String errorMsg = e.toString().replaceFirst(
+            'Exception: ',
+            '',
+          );
       setState(() {
-        _messages.add(_ChatMessage(text: errorMsg, isUser: false, isError: true));
+        _messages
+            .add(_ChatMessage(text: errorMsg, isUser: false, isError: true));
       });
     }
   }
@@ -101,11 +87,12 @@ class _ChatScreenState extends State<ChatScreen> {
                           margin: const EdgeInsets.symmetric(vertical: 6),
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color: Colors.blue[100],
+                            color: Theme.of(context).colorScheme.onPrimary,
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: msg.isError
-                              ? Row(mainAxisSize: MainAxisSize.min,
+                              ? Row(
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
                                     const Icon(Icons.error_outline),
                                     Text(msg.text)
@@ -116,9 +103,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   })),
           Container(
             padding: const EdgeInsets.all(12),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-            ),
+            decoration: const BoxDecoration(),
             child: Row(
               children: [
                 Expanded(
