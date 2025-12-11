@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "132379404540",
+    "project_id": "wa-hw11-habitsapp",
+    "storage_bucket": "wa-hw11-habitsapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132379404540:android:bee76def3906012c39cf79",
+        "android_client_info": {
+          "package_name": "com.wa.flutter.verlan.homework.first_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkqCtX47yhuMz_4jv0vtVBx4QFcRFH0Lo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
