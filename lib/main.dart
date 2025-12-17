@@ -11,7 +11,9 @@ import 'homework12/repositories/habits_repository_impl.dart';
 import 'homework12/services/habits_service.dart';
 import 'homework13/homework13_screen.dart';
 import 'homework13/providers/finance_provider.dart';
-import 'theme.dart';
+import 'homework14/homework14_screen.dart';
+import 'homework14/providers/theme_provider.dart';
+import 'design/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +28,7 @@ void main() async {
             create: (context) =>
                 HabitsService(repository: context.read<HabitsRepository>())),
         ChangeNotifierProvider(create: (_) => FinanceProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       child: const MyApp(),
     ),
@@ -36,6 +39,7 @@ const String hw10 = '/homework_10';
 const String hw11 = '/homework_11';
 const String hw12 = '/homework_12';
 const String hw13 = '/homework_13';
+const String hw14 = '/homework_14';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -45,11 +49,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = context.watch<ThemeProvider>();
+
     return MaterialApp(
       title: 'Homeworks',
-      theme: _theme.dark(),
+      theme: _theme.light(),
       darkTheme: _theme.dark(),
-      themeMode: ThemeMode.dark,
+      themeMode: themeProvider.themeMode,
       home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
       routes: {
@@ -57,6 +63,7 @@ class MyApp extends StatelessWidget {
         hw11: (_) => const Homework11Screen(),
         hw12: (_) => const Homework12Screen(),
         hw13: (_) => const Homework13Screen(),
+        hw14: (_) => const Homework14Screen(),
       },
     );
   }
@@ -70,12 +77,35 @@ class HomeScreen extends StatelessWidget {
     {'title': 'Homework 11 — Posts & Comments', 'route': hw11},
     {'title': 'Homework 12 — Habits', 'route': hw12},
     {'title': 'Homework 13 — Finance', 'route': hw13},
+    {'title': 'Homework 14 — Multimedia', 'route': hw14},
   ];
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Homeworks')),
+      appBar: AppBar(
+        title: const Text('Homeworks'),
+        actions: [
+          IconButton(
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              child: Icon(
+                themeProvider.isDark ? Icons.light_mode : Icons.dark_mode,
+                key: ValueKey<bool>(themeProvider.isDark),
+              ),
+            ),
+            tooltip: themeProvider.isDark
+                ? 'Перейти до світлої теми'
+                : 'Перейти до темної теми',
+            onPressed: () {
+              themeProvider.toggleTheme();
+            },
+          ),
+          const SizedBox(width: 8),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: ListView.builder(

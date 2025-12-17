@@ -47,6 +47,10 @@ dependencies:
   intl: ^0.20.2
   shared_preferences: ^2.5.3
 
+  video_player: ^2.9.5
+  just_audio: ^0.9.46
+  google_fonts: ^6.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -67,6 +71,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/fox.jpg
+    - assets/videos/bts_memories_2025.mp4
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
