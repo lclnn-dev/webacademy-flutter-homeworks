@@ -9,6 +9,8 @@ import 'homework12/providers/auth_provider.dart';
 import 'homework12/repositories/habits_repository.dart';
 import 'homework12/repositories/habits_repository_impl.dart';
 import 'homework12/services/habits_service.dart';
+import 'homework13/homework13_screen.dart';
+import 'homework13/providers/finance_provider.dart';
 import 'theme.dart';
 
 void main() async {
@@ -23,6 +25,7 @@ void main() async {
         Provider<HabitsService>(
             create: (context) =>
                 HabitsService(repository: context.read<HabitsRepository>())),
+        ChangeNotifierProvider(create: (_) => FinanceProvider()),
       ],
       child: const MyApp(),
     ),
@@ -32,6 +35,7 @@ void main() async {
 const String hw10 = '/homework_10';
 const String hw11 = '/homework_11';
 const String hw12 = '/homework_12';
+const String hw13 = '/homework_13';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -52,6 +56,7 @@ class MyApp extends StatelessWidget {
         hw10: (_) => const Homework10Screen(),
         hw11: (_) => const Homework11Screen(),
         hw12: (_) => const Homework12Screen(),
+        hw13: (_) => const Homework13Screen(),
       },
     );
   }
@@ -64,7 +69,7 @@ class HomeScreen extends StatelessWidget {
     {'title': 'Homework 10 — Async', 'route': hw10},
     {'title': 'Homework 11 — Posts & Comments', 'route': hw11},
     {'title': 'Homework 12 — Habits', 'route': hw12},
-    // ...
+    {'title': 'Homework 13 — Finance', 'route': hw13},
   ];
 
   @override
